@@ -19,6 +19,6 @@ function draw() {
     if (keyIsDown(LEFT_ARROW)) {
         p.x -= 10;
     } else if (keyIsDown(RIGHT_ARROW)) {
-        p.y += 10;
+        p.x += 10;
     }
 }
