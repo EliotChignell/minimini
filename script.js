@@ -15,12 +15,10 @@ function draw() {
     // Player
     fill(p.colour);
     rect(p.x,p.y,p.w,p.h);
-}
 
-function keyPressed() {
-    if (keyCode === LEFT_ARROW) {
+    if (keyIsDown(LEFT_ARROW)) {
         p.x -= 10;
-    } else if (keyCode === RIGHT_ARROW) {
-        p.x += 10;
+    } else if (keyIsDown(RIGHT_ARROW)) {
+        p.y += 10;
     }
 }
