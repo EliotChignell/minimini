@@ -16,3 +16,11 @@ function draw() {
     fill(p.colour);
     rect(p.x,p.y,p.w,p.h);
 }
+
+function keyPressed() {
+    if (keyCode === LEFT_ARROW) {
+        p.x -= 10;
+    } else if (keyCode === RIGHT_ARROW) {
+        p.x += 10;
+    }
+}
