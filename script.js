@@ -1,6 +1,6 @@
 var p = {
     x: 0,
-    y: 0,
+    y: 400,
     w: 20,
     h: 20,
     colour: 'white'
