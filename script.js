@@ -1,8 +1,8 @@
 var p = {
     x: 0,
     y: 400,
-    w: 20,
-    h: 20,
+    w: 40,
+    h: 40,
     colour: 'white'
 };
 
