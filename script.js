@@ -16,9 +16,9 @@ function draw() {
     fill(p.colour);
     rect(p.x,p.y,p.w,p.h);
 
-    if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(LEFT_ARROW) && p.x > 0) {
         p.x -= 10;
-    } else if (keyIsDown(RIGHT_ARROW)) {
+    } else if (keyIsDown(RIGHT_ARROW) && p.x < 500-p.w) {
         p.x += 10;
     }
 }
