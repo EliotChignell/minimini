@@ -21,4 +21,6 @@ function draw() {
     } else if (keyIsDown(RIGHT_ARROW) && p.x < 500-p.w) {
         p.x += 10;
     }
+
+    clear();
 }
