@@ -7,8 +7,16 @@ var p = {
 };
 var j = {
     score: 0,
-    lasers: []
+    lasers: [],
+    enemyXs: [30, 130, 230, 330, 430]
 };
+
+// Presets
+function collision(ax, ay, aw, ah, bx, by, bw, bh){
+    if (ax + aw >= bx && ax <= bx + bw && ay + ah >= by && ay <= by + bh){
+        return true;
+    }
+}
 
 // Lasers
 function laser() {
@@ -29,6 +37,21 @@ function dLasers() {
     for (i in j.lasers) {
         j.lasers[i].draw();
         j.lasers[i].update();
+    }
+}
+
+// Enemies
+function enemy() {
+    this.x = enemyXs[random(0,4)];
+    this.y = 0;
+    this.ys = 10;
+    this.colour = 'red';
+    this.draw = function() {
+        fill(this.colour);
+        rect(this.x,this.y,40,40);
+    }
+    this.update = fuction() {
+
     }
 }
 
