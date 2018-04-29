@@ -8,6 +8,7 @@ var p = {
 var j = {
     score: 0,
     lasers: [],
+    enemies: [],
     enemyXs: [30, 130, 230, 330, 430]
 };
 
@@ -22,7 +23,7 @@ function collision(ax, ay, aw, ah, bx, by, bw, bh){
 function laser() {
     this.x = p.x + 10;
     this.y = 430;
-    this.ys = 10; // ys = y speed
+    this.ys = 15; // ys = y speed
     this.colour = 'deepskyblue';
     this.draw = function() {
         fill(this.colour);
@@ -42,16 +43,31 @@ function dLasers() {
 
 // Enemies
 function enemy() {
-    this.x = enemyXs[random(0,4)];
+    this.x = random(j.enemyXs);
     this.y = 0;
-    this.ys = 10;
+    this.ys = 1;
     this.colour = 'red';
+    this.collidingWithWall = false;
     this.draw = function() {
         fill(this.colour);
         rect(this.x,this.y,40,40);
     }
-    this.update = fuction() {
+    this.update = function() {
+        this.y += this.ys;
+        if (collision(this.x,this.y,40,40,0,390,500,10)) {
+            this.colliding = true;
+        }
+    }
+}
 
+function dEnemies() {
+    for (i in j.enemies) {
+        j.enemies[i].draw();
+        j.enemies[i].update();
+
+        if (j.enemies[i].collidingWithWall) {
+            delete j.enemies[i];
+        }
     }
 }
 
@@ -65,6 +81,8 @@ function draw() {
     background(0);
     // Lasers
     dLasers();
+    // Enemies
+    dEnemies();
 
     // Presets
     fill(90);
@@ -91,9 +109,14 @@ function keyPressed() {
     if ((keyCode === UP_ARROW || keyCode === 87 || keyCode === 32)) {
         shootLaser();
     }
-    console.log(p.x);
+    if (keyCode === 69) {
+        generateEnemy();
+    }
 }
 
 function shootLaser() {
     j.lasers.push(new laser());
+}
+function generateEnemy() {
+    j.enemies.push(new enemy());
 }
