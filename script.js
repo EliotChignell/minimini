@@ -48,6 +48,7 @@ function enemy() {
     this.ys = 1;
     this.colour = 'red';
     this.collidingWithWall = false;
+    this.hitByLaser = false;
     this.draw = function() {
         fill(this.colour);
         rect(this.x,this.y,40,40);
@@ -55,8 +56,14 @@ function enemy() {
     this.update = function() {
         this.y += this.ys;
         if (collision(this.x,this.y,40,40,0,390,500,10)) {
-            this.colliding = true;
+            this.collidingWithWall = true;
         }
+        for (x in j.lasers) {
+            if (collision(j.lasers[x].x, j.lasers[x].y, 20, 40, j.enemies[i].x, j.enemies[i].y, 40, 40)) {
+                this.hitByLaser = true;
+            }
+        }
+
     }
 }
 
@@ -66,6 +73,10 @@ function dEnemies() {
         j.enemies[i].update();
 
         if (j.enemies[i].collidingWithWall) {
+            delete j.enemies[i];
+        }
+
+        if (j.enemies[i].hitByLaser) {
             delete j.enemies[i];
         }
     }
